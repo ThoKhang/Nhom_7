@@ -1,0 +1,1 @@
+﻿print N'bài tập'
