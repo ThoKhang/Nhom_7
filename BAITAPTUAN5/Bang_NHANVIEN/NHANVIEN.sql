@@ -1,1 +1,11 @@
-﻿print N'bài tập'
+﻿CREATE TABLE NHANVIEN(
+      MANHANVIEN  INT   PRIMARY KEY,
+      HO           VARCHAR(50)    NOT NULL,
+      TEN          VARCHAR(50)    NOT NULL,
+      NGAYSINH     DATE           NOT NULL,
+      NGAYLAMVIEC  DATE           NOT NULL,
+      DIACHI       VARCHAR(100)   NOT NULL,
+      DIENTHOAI    VARCHAR(15)    NOT NULL,
+      LUONGCOBAN   DECIMAL(10,2)  NOT NULL,
+      PHUCAP       DECIMAL(10,2)  NOT NULL
+);
