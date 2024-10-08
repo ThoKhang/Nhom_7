@@ -1,1 +1,10 @@
-﻿
+﻿CREATE TABLE KHACHHANG (
+    MAKHACHHANG       VARCHAR(10),
+    TENCONGTY         VARCHAR(50),
+    TENGIAODICH       VARCHAR(50),
+    DIACHI            VARCHAR(100),
+    EMAIL             VARCHAR(50),
+    DIENTHOAI         VARCHAR(15),  
+    FAX               VARCHAR(15),
+    PRIMARY KEY  (MAKHACHHANG)
+);
