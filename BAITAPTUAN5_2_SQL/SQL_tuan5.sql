@@ -8,7 +8,7 @@ create table NHACUNGCAP
 	TENCONGTY nvarchar(50) not null,
 	TENGIAODICH nvarchar(50) null,
 	DIACHI nvarchar(50) not null,
-	DIENTHOAI char(12) not null,
+	DIENTHOAI char(11) not null,
 	FAX char(10) not null,
 	EMAIL varchar(30) not null,
 )
@@ -30,10 +30,10 @@ create table MATHANG
 create table KHACHHANG
 (
 	MAKHACHHANG char(10) primary key,
-	TENCONGTY nvarchar(30) not null,
-	TENGIAODICH nvarchar(30) not null,
-	DIACHI nvarchar(30) not null,
-	EMAIL nvarchar(30) not null,
+	TENCONGTY nvarchar(50) not null,
+	TENGIAODICH nvarchar(50) not null,
+	DIACHI nvarchar(100) not null,
+	EMAIL varchar(50) not null,
 	DIENTHOAI char(11) not null,
 	FAX char (11) null,
 )
@@ -46,8 +46,8 @@ create table NHANVIEN
 	NGAYLAMVIEC date not null,
 	DIACHI nvarchar(100) not null,
 	DIENTHOAI char(15) not null,
-	LUONGCOBAN decimal(10,20) not null,
-	PHUCAP decimal(10,20) not null,
+	LUONGCOBAN decimal(10,2) not null,
+	PHUCAP decimal(10,2) not null,
 )
 create table DONDATHANG
 (
