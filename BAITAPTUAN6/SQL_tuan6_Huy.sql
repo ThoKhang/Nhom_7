@@ -76,7 +76,20 @@ create table CHITIETDATHANG
 	MUCGIAMGIA decimal(10,2) not null,
 )
 --=======================================================TUẦN 6====================================================================================-
-/*1. Thiết lập  mối quan hệ giữa các bảng.
-2.Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
-3.Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
-4.Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi*/
+--/*1. Thiết lập  mối quan hệ giữa các bảng.
+ALTER TABLE CHITIETDATHANG
+ADD CONSTRAINT DF_SOLUONG DEFAULT 1 FOR SOLUONG;
+
+--2.Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
+ALTER TABLE CHITIETDATHANG
+ADD CONSTRAINT DF_MUCGIAMGIA DEFAULT 0 FOR MUCGIAMGIA;
+
+--3.Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
+ALTER TABLE DONDATHANG
+ADD CONSTRAINT CK_NGAYGIAO_NGAYCHUYEN
+CHECK (NGAYGIAOHANG >= NGAYDATHANG AND NGAYCHUYENHANG >= NGAYDATHANG);
+
+--4.Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi*/
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT CK_TUOI_NHANVIEN
+CHECK (DATEDIFF(YEAR, NGAYSINH, NGAYLAMVIEC) >= 18 AND DATEDIFF(YEAR, NGAYSINH, NGAYLAMVIEC) <= 60);
