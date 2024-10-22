@@ -81,10 +81,22 @@ create table CHITIETDATHANG
 3.Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
 4.Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi*/
 
---2.Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
+--2. Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
 alter table CHITIETDATHANG
 	add
 		constraint DF_CHITIETDONHANG_SOLUONG 
 			default 1 for SOLUONG,
 		constraint DF_CHITIETDATHANG_MUCGIAMGIA
 			default 0 for MUCGIAMGIA;
+--3. Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
+alter table DONDATHANG
+	add 
+		constraint CK_DONDATHANG_NGAYGIAOHANG 
+			check(NGAYGIAOHANG >= NGAYDATHANG),
+		constraint CK_DONDATHANG_NGAYCHUYENHANG
+			check(NGAYCHUYENHANG >= NGAYDATHANG);
+--4. Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi
+alter table NHANVIEN
+	add
+		constraint CK_NHANVIEN 
+			check(datediff(year,NGAYSINH,getdate())>=18 and datediff(year,NGAYSINH,getdate())<=60);
