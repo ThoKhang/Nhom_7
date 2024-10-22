@@ -75,8 +75,22 @@ create table CHITIETDATHANG
 	SOLUONG int not null,
 	MUCGIAMGIA decimal(10,2) not null,
 )
+alter table CHITIETDATHANG
+	alter column MUCGIAMGIA decimal(6,4) not null
 --=======================================================TUẦN 6====================================================================================-
-/*1. Thiết lập  mối quan hệ giữa các bảng.
-2.Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
-3.Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
-4.Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi*/
+--1. Thiết lập  mối quan hệ giữa các bảng.
+--2.Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
+alter table CHITIETDATHANG
+	add constraint CK_CHITIETDATHANG_SOLUONG
+		check (SOLUONG>0),
+		default 1 for SOLUONG,
+		constraint CK_CHITIETDATHANG_MUCGIAMGIA
+		default 0 for MUCGIAMGIA
+--3.Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
+alter table DONDATHANG
+	add constraint CK_CHITETDATHANG_DATE
+		check (NGAYGIAOHANG<=NGAYDATHANG and NGAYCHUYENHANG<=NGAYDATHANG)
+--4.Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi*/
+alter table NHANVIEN 
+	add constraint CK_NHANVIEN_OLD
+		check (NGAYSINH <= dateadd(year, -18, getdate()) and NGAYSINH >= dateadd(year, -60, getdate()))
