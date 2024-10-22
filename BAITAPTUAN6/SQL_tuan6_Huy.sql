@@ -73,7 +73,7 @@ create table CHITIETDATHANG
 	primary key(DONDATHANGNO,MATHANGNO),
 	GIABAN decimal(10,2) not null,
 	SOLUONG int not null,
-	MAGIAMGIA varchar(20) not null,
+	MUCGIAMGIA decimal(10,2) not null,
 )
 --=======================================================TUẦN 6====================================================================================-
 /*1. Thiết lập  mối quan hệ giữa các bảng.
