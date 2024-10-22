@@ -33,6 +33,8 @@ create table MATHANG
 	SOLUONG int check(SOLUONG>=0),
 	DONVITINH varchar(20) not null,
 	GIAHANG money not null,
+	CONSTRAINT FK_NHACUNGCAP FOREIGN KEY (NHACUNGCAPNO) REFERENCES NHACUNGCAP(MACONGTY),
+    CONSTRAINT FK_LOAIHANG FOREIGN KEY (LOAIHANGNO) REFERENCES LOAIHANG(MALOAIHANG)
 )
 create table KHACHHANG
 (
@@ -65,6 +67,8 @@ create table DONDATHANG
 	NGAYGIAOHANG date not null,
 	NGAYCHUYENHANG date not null,
 	NOIGIAOHANG nvarchar(100) not null,
+	CONSTRAINT FK_KHACHHANG FOREIGN KEY (KHACHHANGNO) REFERENCES KHACHHANG(MAKHACHHANG),
+    CONSTRAINT FK_NHANVIEN FOREIGN KEY (MANHANVIEN) REFERENCES NHANVIEN(MANHANVIEN)
 )
 create table CHITIETDATHANG
 (
@@ -80,3 +84,18 @@ create table CHITIETDATHANG
 2.Bổ sung ràng buộc thiết lập giá trị mặc định bằng 1 cho cột SOLUONG  và bằng 0 cho cột MUCGIAMGIA trong bảng CHITIETDATHANG
 3.Bổ sung cho bảng DONDATHANG ràng buộc kiểm tra ngày giao hàng và ngày chuyển hàng phải sau hoặc bằng với ngày đặt hàng.
 4.Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi*/
+-- Thiết lập giá trị mặc định là 1 cho cột SOLUONG
+ALTER TABLE CHITIETDATHANG
+ADD CONSTRAINT DF_SOLUONG DEFAULT 1 FOR SOLUONG;
+-- Thiết lập giá trị mặc định là 0 cho cột MUCGIAMGIA
+ALTER TABLE CHITIETDATHANG
+ADD CONSTRAINT DF_MUCGIAMGIA DEFAULT 0 FOR MUCGIAMGIA;
+-- Bổ sung ràng buộc kiểm tra cho bảng DONDATHANG
+ALTER TABLE DONDATHANG
+ADD CONSTRAINT CK_NGAYGIAO_NGAYCHUYEN
+CHECK (NGAYGIAOHANG >= NGAYDATHANG AND NGAYCHUYENHANG >= NGAYDATHANG);
+-- Bổ sung ràng buộc kiểm tra cho bảng NHANVIEN để đảm bảo tuổi từ 18 đến 60
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT CK_TUOI_NHANVIEN
+CHECK (DATEDIFF(YEAR, NGAYSINH, NGAYLAMVIEC) >= 18 AND DATEDIFF(YEAR, NGAYSINH, NGAYLAMVIEC) <= 60);
+
