@@ -128,5 +128,13 @@ alter table DONDATHANG
 --4. Bổ sung ràng buộc cho bảng NHANVIEN để đảm bảo rằng một nhân viên chỉ có thể làm việc trong công ty khi đủ 18 tuổi và không quá 60 tuổi
 alter table NHANVIEN
 	add
-		constraint CK_NHANVIEN 
-			check(datediff(year,NGAYSINH,getdate())>=18 and datediff(year,NGAYSINH,getdate())<=60);
+		constraint CK_NHANVIEN_NGAYSINH 
+			check(datediff(year,NGAYSINH,getdate())>=18 and datediff(year,NGAYSINH,getdate())<=60),
+		constraint CK_NHANVIEN_DIENTHOAI
+			check (DIENTHOAI like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]');
+alter table KHACHHANG
+	add
+		constraint CK_KHACHHANG_EMAIL
+			check  (Email like '[A-Za-z]%@gmail.com'),
+		constraint CK_KHACHHANG_DIENTHOAI
+			check (DIENTHOAI like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]');
