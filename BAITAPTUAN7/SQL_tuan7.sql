@@ -184,13 +184,27 @@ INSERT INTO NHACUNGCAP (MACONGTY, TENCONGTY, TENGIAODICH, DIACHI, DIENTHOAI, FAX
 VALUES
     ('CTso000001', N'Công ty A', N'Nguyễn Văn A', N'Địa chỉ A', '0123456789', '0987654321', 'emailA1@example.com'),
     ('CTso000002', N'Công ty B', N'Trần Văn B', N'Địa chỉ B', '0123756789', '0987654322', 'emailB1@example.com'),
-    ('CTso000003', N'Công ty C', N'Phạm Văn C', N'Địa chỉ C', '0193457787', '0987654323', 'emailC1@example.com');
+    ('CTso000003', N'Công ty C', N'Phạm Văn C', N'Địa chỉ D', '0193457787', '0987654323', 'emailC1@example.com'),
+	('CTso000004', N'Công ty D', N'Phạm Văn D', N'Địa chỉ B', '0193457788', '0987694323', 'emailD1@example.com'),
+	('CTso000005', N'Công ty A', N'Phạm Tuấn C', N'Địa chỉ C', '0193457773', '0987604323', 'emailE1@example.com'),
+	('CTso000006', N'Công ty A', N'Nguyễn Kim A', N'Địa chỉ C', '0193459887', '0980650323', 'emailC2@example.com'),
+	('CTso000007', N'Công ty C', N'Phạm Văn K', N'Địa chỉ A', '0193459987', '0987054323', 'emailC3@example.com'),
+	('CTso000008', N'Công ty B', N'Phạm Văn R', N'Địa chỉ E', '0197457787', '0987604023', 'emailC4@example.com'),
+	('CTso000009', N'Công ty C', N'Phạm Văn T', N'Địa chỉ F', '0103457787', '0987650323', 'emailC5@example.com'),
+	('CTso000010', N'Công ty B', N'Phạm Văn U', N'Địa chỉ N', '0191257787', '0987004323', 'emailC6@example.com');
 -- Thêm dữ liệu vào bảng LOAIHANG
 INSERT INTO LOAIHANG (MALOAIHANG, TENLOAIHANG)
 VALUES
     ('LHso000001', N'Loại hàng A9'),
     ('LHso000002', N'Loại hàng B9'),
-    ('LHso000003', N'Loại hàng C9');
+    ('LHso000003', N'Loại hàng C9'),
+	('LHso000004', N'Loại hàng D9'),
+	('LHso000005', N'Loại hàng E9'),
+	('LHso000006', N'Loại hàng F9'),
+	('LHso000007', N'Loại hàng C1'),
+	('LHso000008', N'Loại hàng C2'),
+	('LHso000009', N'Loại hàng C3'),
+	('LHso000010', N'Loại hàng C4');
 
 
 
