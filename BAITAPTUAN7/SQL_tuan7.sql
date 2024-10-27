@@ -140,8 +140,7 @@ ALTER TABLE NHACUNGCAP
 ADD
     CONSTRAINT CK_NHACUNGCAP_DIENTHOAI CHECK (DIENTHOAI LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
     CONSTRAINT CK_NHACUNGCAP_FAX CHECK (FAX LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
-    CONSTRAINT CK_NHACUNGCAP_EMAIL CHECK (EMAIL LIKE '%_@__%.__%');
-
+    CONSTRAINT CK_NHACUNGCAP_EMAIL CHECK (Email like '[A-Za-z]%@gmail.com');
 -- Bổ sung ràng buộc cho bảng LOAIHANG
 ALTER TABLE LOAIHANG
 ADD
@@ -182,16 +181,16 @@ insert into KHACHHANG
 -- Thêm dữ liệu vào bảng NHACUNGCAP
 INSERT INTO NHACUNGCAP (MACONGTY, TENCONGTY, TENGIAODICH, DIACHI, DIENTHOAI, FAX, EMAIL)
 VALUES
-    ('CTso000001', N'Công ty A', N'Nguyễn Văn A', N'Địa chỉ A', '0123456789', '0987654321', 'emailA1@example.com'),
-    ('CTso000002', N'Công ty B', N'Trần Văn B', N'Địa chỉ B', '0123756789', '0987654322', 'emailB1@example.com'),
-    ('CTso000003', N'Công ty C', N'Phạm Văn C', N'Địa chỉ D', '0193457787', '0987654323', 'emailC1@example.com'),
-	('CTso000004', N'Công ty D', N'Phạm Văn D', N'Địa chỉ B', '0193457788', '0987694323', 'emailD1@example.com'),
-	('CTso000005', N'Công ty A', N'Phạm Tuấn C', N'Địa chỉ C', '0193457773', '0987604323', 'emailE1@example.com'),
-	('CTso000006', N'Công ty A', N'Nguyễn Kim A', N'Địa chỉ C', '0193459887', '0980650323', 'emailC2@example.com'),
-	('CTso000007', N'Công ty C', N'Phạm Văn K', N'Địa chỉ A', '0193459987', '0987054323', 'emailC3@example.com'),
-	('CTso000008', N'Công ty B', N'Phạm Văn R', N'Địa chỉ E', '0197457787', '0987604023', 'emailC4@example.com'),
-	('CTso000009', N'Công ty C', N'Phạm Văn T', N'Địa chỉ F', '0103457787', '0987650323', 'emailC5@example.com'),
-	('CTso000010', N'Công ty B', N'Phạm Văn U', N'Địa chỉ N', '0191257787', '0987004323', 'emailC6@example.com');
+    ('CTso000001', N'Công ty A', N'Nguyễn Văn A', N'Địa chỉ A', '0123456789', '0987654321', 'emailA@gmail.com'),
+    ('CTso000002', N'Công ty B', N'Trần Văn B', N'Địa chỉ B', '0123756789', '0987654322', 'emailB@gmail.com'),
+    ('CTso000003', N'Công ty C', N'Phạm Văn C', N'Địa chỉ D', '0193457787', '0987654323', 'emailC@gmail.com'),
+	('CTso000004', N'Công ty D', N'Phạm Văn D', N'Địa chỉ B', '0193457788', '0987694323', 'emailD@gmail.com'),
+	('CTso000005', N'Công ty A', N'Phạm Tuấn C', N'Địa chỉ C', '0193457773', '0987604323', 'emailE@gmail.com'),
+	('CTso000006', N'Công ty A', N'Nguyễn Kim A', N'Địa chỉ C', '0193459887', '0980650323', 'emailF@gmail.com'),
+	('CTso000007', N'Công ty C', N'Phạm Văn K', N'Địa chỉ A', '0193459987', '0987054323', 'emailG@gmail.com'),
+	('CTso000008', N'Công ty B', N'Phạm Văn R', N'Địa chỉ E', '0197457787', '0987604023', 'emailH@gmail.com'),
+	('CTso000009', N'Công ty C', N'Phạm Văn T', N'Địa chỉ F', '0103457787', '0987650323', 'emailI@gmail.com'),
+	('CTso000010', N'Công ty B', N'Phạm Văn U', N'Địa chỉ N', '0191257787', '0987004323', 'emailJ@gmail.com');
 -- Thêm dữ liệu vào bảng LOAIHANG
 INSERT INTO LOAIHANG (MALOAIHANG, TENLOAIHANG)
 VALUES
