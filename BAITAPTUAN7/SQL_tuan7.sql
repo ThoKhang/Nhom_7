@@ -15,8 +15,8 @@ create table NHACUNGCAP
 	TENCONGTY nvarchar(50) not null,
 	TENGIAODICH nvarchar(50) not null,
 	DIACHI nvarchar(50) not null,
-	DIENTHOAI char(10) unique not null,
-	FAX char(10) unique not null,
+	DIENTHOAI varchar(10) unique not null,
+	FAX varchar(10) unique not null,
 	EMAIL varchar(30) unique not null,
 )
 create table LOAIHANG 
@@ -40,9 +40,9 @@ create table MATHANG
 			delete cascade 
 		on 
 			update cascade,
-	SOLUONG float not null,
-	DONVITINH varchar(20) not null,
-	GIAHANG money not null,
+	SOLUONG int check(SOLUONG>=0) not null,
+	DONVITINH nvarchar(20) not null,
+	GIAHANG money check(GIAHANG>=0) not null,
 )
 create table KHACHHANG
 (
@@ -204,6 +204,32 @@ VALUES
 	('LHso000008', N'Loại hàng C2'),
 	('LHso000009', N'Loại hàng C3'),
 	('LHso000010', N'Loại hàng C4');
-
+--Thêm dữ liệu vào bảng MATHANG
+INSERT INTO MATHANG
+VALUES 
+	('MH00000001', N'Tivi Sony', 'CTso000001', 'LHso000001', 120, N'Máy', 5000000),
+	('MH00000002', N'Tivi Samsung', 'CTso000001', 'LHso000002', 100, N'Máy', 6000000),
+	('MH00000003', N'Iphone 16', 'CTso000002', 'LHso000003', 111, N'Máy', 26000000),
+	('MH00000004', N'Máy cắt tóc', 'CTso000003', 'LHso000002', 130, N'Máy', 1500000),
+	('MH00000005', N'Laptop Asus', 'CTso000004', 'LHso000001', 140, N'Máy', 18000000),
+	('MH00000006', N'Tivi Casper', 'CTso000005', 'LHso000004', 99, N'Máy', 6000000),
+	('MH00000007', N'Whey Rule 1', 'CTso000002', 'LHso000005', 107, N'Hũ', 1600000),
+	('MH00000008', N'Giày Bitis', 'CTso000006', 'LHso000006', 106, N'Đôi', 300000),
+	('MH00000009', N'Banh động lực', 'CTso000007', 'LHso000007', 101, N'Quả', 150000),
+	('MH00000010', N'Máy sấy tóc', 'CTso000009', 'LHso000008', 100, N'Máy', 1200000)
+--Thêm dữ liệu vào bảng DONDATHANG
+set dateformat dmy
+INSERT INTO DONDATHANG
+VALUES
+	('SHD0000001', 'khso000001', 'nvso000001', '21-2-2023', '23-2-2023', '22-2-2023', N'99 Trần Duy Hưng'),
+	('SHD0000002', 'khso000001', 'nvso000002', '21-3-2023', '23-3-2023', '22-3-2023', N'98 Trường Chinh'),
+	('SHD0000003', 'khso000002', 'nvso000003', '21-4-2023', '23-4-2023', '22-4-2023', N'277 Nguyễn Tất Thành'),
+	('SHD0000004', 'khso000003', 'nvso000004', '21-5-2023', '23-5-2023', '22-5-2023', N'100 Lê Độ'),
+	('SHD0000005', 'khso000004', 'nvso000005', '21-6-2023', '23-6-2023', '22-6-2023', N'99 Hà Huy Tập'),
+	('SHD0000006', 'khso000005', 'nvso000005', '21-7-2023', '23-7-2023', '22-7-2023', N'13/48 Dương Thành Long'),
+	('SHD0000007', 'khso000003', 'nvso000006', '21-8-2023', '23-8-2023', '22-8-2023', N'20 Nguyễn Lương Bin'),
+	('SHD0000008', 'khso000004', 'nvso000007', '21-9-2023', '23-9-2023', '22-9-2023', N'78 Thọ Khang'),
+	('SHD0000009', 'khso000006', 'nvso000008', '21-10-2023', '23-10-2023', '22-10-2023', N'12 Tôn Đản'),
+	('SHD0000010', 'khso000007', 'nvso000002', '21-11-2023', '23-11-2023', '22-11-2023', N'90 Dinh Độc Lập')
 
 
