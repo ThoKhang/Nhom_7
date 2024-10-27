@@ -135,6 +135,18 @@ alter table KHACHHANG
 			check  (Email like '[A-Za-z]%@gmail.com'),
 		constraint CK_KHACHHANG_DIENTHOAI
 			check (DIENTHOAI like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]');
+-- Bổ sung ràng buộc cho bảng NHACUNGCAP
+ALTER TABLE NHACUNGCAP
+ADD
+    CONSTRAINT CK_NHACUNGCAP_DIENTHOAI CHECK (DIENTHOAI LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+    CONSTRAINT CK_NHACUNGCAP_FAX CHECK (FAX LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+    CONSTRAINT CK_NHACUNGCAP_EMAIL CHECK (EMAIL LIKE '%_@__%.__%');
+
+-- Bổ sung ràng buộc cho bảng LOAIHANG
+ALTER TABLE LOAIHANG
+ADD
+    CONSTRAINT UQ_LOAIHANG_TENLOAIHANG UNIQUE (TENLOAIHANG);
+
 --=====================================================TUẦN 7==========================================================================----
 --==============BỔ SUNG PHẦN RÀNG BUỘC Ở phần TUẦN 6 (ở trên !!!!!!!)!!!!!!=========-----------------------------------------
 /*Các nhóm rà soát lại tuần 5 và tuần 6 để hoàn thành file báo cáo tổng hợp và dùng lệnh INSERT để
@@ -166,7 +178,19 @@ insert into KHACHHANG
 		('khso000008',N'Công ty Mái Ấm',N'giao dịch trung gian',N'Playku','khangheheqt8@gmail.com','0112233447','kh12345677'),
 		('khso000009',N'Công ty Mái Tôn',N'giao dịch ví điện tử',N'Cam Ranh','khangheheqt9@gmail.com','0112233448','kh12345678'),
 		('khso000010',N'Công ty Hoa Sen',N'giao dịch ví điện tử',N'Quảng Nam','khangheheqt10@gmail.com','0112233449','kh12345679');
-select *from KHACHHANG
+--select *from KHACHHANG
+-- Thêm dữ liệu vào bảng NHACUNGCAP
+INSERT INTO NHACUNGCAP (MACONGTY, TENCONGTY, TENGIAODICH, DIACHI, DIENTHOAI, FAX, EMAIL)
+VALUES
+    ('CTso000001', N'Công ty A', N'Nguyễn Văn A', N'Địa chỉ A', '0123456789', '0987654321', 'emailA1@example.com'),
+    ('CTso000002', N'Công ty B', N'Trần Văn B', N'Địa chỉ B', '0123756789', '0987654322', 'emailB1@example.com'),
+    ('CTso000003', N'Công ty C', N'Phạm Văn C', N'Địa chỉ C', '0193457787', '0987654323', 'emailC1@example.com');
+-- Thêm dữ liệu vào bảng LOAIHANG
+INSERT INTO LOAIHANG (MALOAIHANG, TENLOAIHANG)
+VALUES
+    ('LHso000001', N'Loại hàng A9'),
+    ('LHso000002', N'Loại hàng B9'),
+    ('LHso000003', N'Loại hàng C9');
 
 
 
