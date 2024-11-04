@@ -83,8 +83,8 @@ create table DONDATHANG
 			update cascade,
 	NGAYDATHANG date not null,
 	NGAYGIAOHANG date not null,
-	NGAYCHUYENHANG date not null,
-	NOIGIAOHANG nvarchar(100) not null,
+	NGAYCHUYENHANG date null,
+	NOIGIAOHANG nvarchar(100) null,
 )
 create table CHITIETDATHANG
 (
@@ -171,13 +171,13 @@ insert into NHANVIEN
 --select *from NHANVIEN
 insert into KHACHHANG
 	values
-		('khso000001',N'Công ty Ánh Sao',N'giao dịch ví điện tử',N'Cà Mau','khangheheqt1@gmail.com','0112233440','kh12345670'),
+		('khso000001',N'Công ty VINAMILK',N'giao dịch ví điện tử',N'Cà Mau','khangheheqt1@gmail.com','0112233440','kh12345670'),
 		('khso000002',N'Công ty Ánh Viên',N'giao dịch bitcoin',N'Thừa Thiên Huế','khangheheqt2@gmail.com','0112233441','kh12345671'),
-		('khso000003',N'Công ty Mai Mai',N'giao dịch tiền mặt',N'Hồ Chí Minh','khangheheqt3@gmail.com','0112233442','kh12345672'),
+		('khso000003',N'Công ty VINAMILK',N'giao dịch tiền mặt',N'Hồ Chí Minh','khangheheqt3@gmail.com','0112233442','kh12345672'),
 		('khso000004',N'Công ty Ánh Ánh',N'giao dịch thanh toán qua app',N'Biên Hòa','khangheheqt4@gmail.com','0112233443','kh12345673'),
 		('khso000005',N'Công ty Phông Bạt',N'giao dịch ví điện tử',N'Bình Định','khangheheqt5@gmail.com','0112233444','kh12345674'),
 		('khso000006',N'Công ty Trường Phát',N'giao dịch tiền ảo',N'Hà Nội','khangheheqt6@gmail.com','0112233445','kh12345675'),
-		('khso000007',N'Công ty Trường Tồn',N'giao dịch giải ngân',N'Buôn Mê Thuột','khangheheqt7@gmail.com','0112233446','kh12345676'),
+		('khso000007',N'Công ty VINAMILK',N'giao dịch giải ngân',N'Buôn Mê Thuột','khangheheqt7@gmail.com','0112233446','kh12345676'),
 		('khso000008',N'Công ty Mái Ấm',N'giao dịch trung gian',N'Playku','khangheheqt8@gmail.com','0112233447','kh12345677'),
 		('khso000009',N'Công ty Mái Tôn',N'giao dịch ví điện tử',N'Cam Ranh','khangheheqt9@gmail.com','0112233448','kh12345678'),
 		('khso000010',N'Công ty Hoa Sen',N'giao dịch ví điện tử',N'Quảng Nam','khangheheqt10@gmail.com','0112233449','kh12345679');
@@ -190,11 +190,11 @@ VALUES
     ('CTso000003', N'Công ty C', N'Phạm Văn C', N'Địa chỉ D', '0193457787', '0987654323', 'emailC@gmail.com'),
 	('CTso000004', N'Công ty D', N'Phạm Văn D', N'Địa chỉ B', '0193457788', '0987694323', 'emailD@gmail.com'),
 	('CTso000005', N'Công ty A', N'Phạm Tuấn C', N'Địa chỉ C', '0193457773', '0987604323', 'emailE@gmail.com'),
-	('CTso000006', N'Công ty A', N'Nguyễn Kim A', N'Địa chỉ C', '0193459887', '0980650323', 'emailF@gmail.com'),
+	('CTso000006', N'Công ty E', N'Nguyễn Kim A', N'Địa chỉ C', '0193459887', '0980650323', 'emailF@gmail.com'),
 	('CTso000007', N'Công ty C', N'Phạm Văn K', N'Địa chỉ A', '0193459987', '0987054323', 'emailG@gmail.com'),
 	('CTso000008', N'Công ty B', N'Phạm Văn R', N'Địa chỉ E', '0197457787', '0987604023', 'emailH@gmail.com'),
 	('CTso000009', N'Công ty C', N'Phạm Văn T', N'Địa chỉ F', '0103457787', '0987650323', 'emailI@gmail.com'),
-	('CTso000010', N'Công ty B', N'Phạm Văn U', N'Địa chỉ N', '0191257787', '0987004323', 'emailJ@gmail.com');
+	('CTso000010', N'Công ty F', N'Phạm Văn U', N'Địa chỉ N', '0191257787', '0987004323', 'emailJ@gmail.com');
 -- Thêm dữ liệu vào bảng LOAIHANG
 INSERT INTO LOAIHANG (MALOAIHANG, TENLOAIHANG)
 VALUES
@@ -225,15 +225,15 @@ VALUES
 set dateformat dmy
 INSERT INTO DONDATHANG
 VALUES
-	('SHD0000001', 'khso000001', 'nvso000001', '21-2-2023', '23-2-2023', '22-2-2023', N'99 Trần Duy Hưng'),
-	('SHD0000002', 'khso000001', 'nvso000002', '21-3-2023', '23-3-2023', '22-3-2023', N'98 Trường Chinh'),
-	('SHD0000003', 'khso000002', 'nvso000003', '21-4-2023', '23-4-2023', '22-4-2023', N'277 Nguyễn Tất Thành'),
+	('SHD0000001', 'khso000001', 'nvso000001', '21-2-2023', '23-2-2023', '22-2-2023', Null),
+	('SHD0000002', 'khso000001', 'nvso000002', '21-3-2023', '23-3-2023', Null, N'98 Trường Chinh'),
+	('SHD0000003', 'khso000002', 'nvso000003', '21-4-2023', '23-4-2023', '22-4-2023', Null),
 	('SHD0000004', 'khso000003', 'nvso000004', '21-5-2023', '23-5-2023', '22-5-2023', N'100 Lê Độ'),
-	('SHD0000005', 'khso000004', 'nvso000005', '21-6-2023', '23-6-2023', '22-6-2023', N'99 Hà Huy Tập'),
-	('SHD0000006', 'khso000005', 'nvso000005', '21-7-2023', '23-7-2023', '22-7-2023', N'13/48 Dương Thành Long'),
-	('SHD0000007', 'khso000003', 'nvso000006', '21-8-2023', '23-8-2023', '22-8-2023', N'20 Nguyễn Lương Bin'),
+	('SHD0000005', 'khso000004', 'nvso000005', '21-6-2023', '23-6-2023', Null, N'99 Hà Huy Tập'),
+	('SHD0000006', 'khso000005', 'nvso000005', '21-7-2023', '23-7-2023', '22-7-2023', Null),
+	('SHD0000007', 'khso000003', 'nvso000006', '21-8-2023', '23-8-2023', '22-8-2023', Null),
 	('SHD0000008', 'khso000004', 'nvso000007', '21-9-2023', '23-9-2023', '22-9-2023', N'78 Thọ Khang'),
-	('SHD0000009', 'khso000006', 'nvso000008', '21-10-2023', '23-10-2023', '22-10-2023', N'12 Tôn Đản'),
+	('SHD0000009', 'khso000006', 'nvso000008', '21-10-2023', '23-10-2023', Null, N'12 Tôn Đản'),
 	('SHD0000010', 'khso000007', 'nvso000002', '21-11-2023', '23-11-2023', '22-11-2023', N'90 Dinh Độc Lập')
 --Thêm dữ liệu của các bảng CHITIETDATHANG.
 INSERT INTO CHITIETDATHANG 
@@ -248,4 +248,69 @@ VALUES
     ('SHD0000008', 'MH00000010', 1200000, 6, 1),
     ('SHD0000009', 'MH00000001', 5000000, 3, 2), 
     ('SHD0000010', 'MH00000004', 1500000, 2, 3); 
+--Câu a: Cập nhật lại giá trị trường NGAYCHUYENHANG của những bản ghi có NGAYCHUYENHANG chưa xác định (NULL) trong bảng DONDATHANG bằng với giá trị của trường NGAYDATHANG.
+UPDATE DONDATHANG
+	SET NGAYCHUYENHANG = NGAYDATHANG
+	WHERE NGAYCHUYENHANG IS NULL;
+--Câu b: Tăng số lượng hàng của những mặt hàng do công ty VINAMILK cung cấp lên gấp đôi.
+UPDATE CHITIETDATHANG
+	SET SOLUONG = SOLUONG * 2
+	WHERE MATHANGNO IN (
+		SELECT MAHANG FROM MATHANG 
+		WHERE NHACUNGCAPNO = (
+			SELECT NHACUNGCAPNO FROM NHACUNGCAP WHERE TENCONGTY = N'Công ty VINAMILK'
+    )
+)
+--Câu c: Cập nhật giá trị của trường NOIGIAOHANG trong bảng DONDATHANG bằng địa chỉ của khách hàng đối với những đơn đặt hàng chưa xác định được nơi giao hàng (giá trị trường NOIGIAOHANG bằng NULL).
+UPDATE DONDATHANG
+SET NOIGIAOHANG = (
+    SELECT DIACHI
+    FROM KHACHHANG
+    WHERE KHACHHANG.MAKHACHHANG = DONDATHANG.KHACHHANGNO
+)
+WHERE NOIGIAOHANG IS NULL
+--Câu d: Cập nhật lại dữ liệu trong bảng KHACHHANG sao cho nếu tên công ty và tên giao dịch của khách hàng trùng với tên công ty và tên giao dịch của một nhà cung cấp nào đó thì địa chỉ, điện thoại, fax và e-mail phải giống nhau.
+UPDATE KHACHHANG
+SET DIACHI = NHACUNGCAP.DIACHI,
+    DIENTHOAI = NHACUNGCAP.DIENTHOAI,
+    FAX = NHACUNGCAP.FAX,
+    EMAIL = NHACUNGCAP.EMAIL
+FROM KHACHHANG, NHACUNGCAP
+WHERE KHACHHANG.TENCONGTY = NHACUNGCAP.TENCONGTY AND KHACHHANG.TENGIAODICH = NHACUNGCAP.TENGIAODICH
+--Câu e: Tăng lương lên gấp rưỡi cho những nhân viên bán được số lượng hàng nhiều hơn 100 trong năm 2022.
+UPDATE NHANVIEN
+SET LUONGCOBAN = LUONGCOBAN * 1.5
+WHERE MANHANVIEN IN (
+    SELECT MANHANVIEN
+    FROM DONDATHANG, CHITIETDATHANG
+    WHERE YEAR(NGAYDATHANG) = 2022 
+    GROUP BY MANHANVIEN
+    HAVING SUM(SOLUONG) > 100
+)
+--Câu f: Tăng phụ cấp lên bằng 50% lương cho những nhân viên bán được hàng nhiều nhất.
+UPDATE NHANVIEN
+SET PHUCAP = LUONGCOBAN * 0.5
+WHERE MANHANVIEN IN (
+    SELECT MANHANVIEN
+    FROM DONDATHANG, CHITIETDATHANG
+    WHERE DONDATHANG.SOHOADON = CHITIETDATHANG.DONDATHANGNO
+    GROUP BY DONDATHANG.MANHANVIEN
+    HAVING SUM(CHITIETDATHANG.SoLuong) = (
+            SELECT MAX(Tong)
+            FROM (
+                SELECT MANHANVIEN, SUM(CHITIETDATHANG.SoLuong) AS Tong
+                FROM DONDATHANG,CHITIETDATHANG
+                WHERE DONDATHANG.SOHOADON = CHITIETDATHANG.DONDATHANGNO
+                GROUP BY DONDATHANG.MANHANVIEN
+            ) Tong
+        )
+)
+--Câu g: Giảm 25% lương của những nhân viên trong năm 2023 không lập được bất kỳ đơn đặt hàng nào.
+UPDATE NHANVIEN
+SET LUONGCOBAN = LUONGCOBAN * 0.75
+WHERE MANHANVIEN NOT IN (
+    SELECT DISTINCT MANHANVIEN
+    FROM DONDATHANG
+    WHERE YEAR(NGAYDATHANG) = 2023
+)
 
