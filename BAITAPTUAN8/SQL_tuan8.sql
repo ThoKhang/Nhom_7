@@ -249,8 +249,69 @@ VALUES
     ('SHD0000009', 'MH00000001', 5000000, 3, 2), 
     ('SHD0000010', 'MH00000004', 1500000, 2, 3); 
 --==============================================TUẦN 8===========================================================
---Câu Cập nhật lại giá trị trường NGAYCHUYENHANG của những bản ghi 
---có NGAYCHUYENHANG chưa xác định (NULL) trong bảng DONDATHANG bằng với giá trị của trường NGAYDATHANG.
-update DONDATHANG
-set NGAYCHUYENHANG = NGAYDATHANG
-where 
+
+--a: Cập nhật lại giá trị trường NGAYCHUYENHANG của những bản ghi có NGAYCHUYENHANG chưa xác định (NULL) trong bảng DONDATHANG bằng với giá trị của trường NGAYDATHANG.
+UPDATE DONDATHANG
+	SET NGAYCHUYENHANG = NGAYDATHANG
+	WHERE NGAYCHUYENHANG IS NULL;
+--b: Tăng số lượng hàng của những mặt hàng do công ty VINAMILK cung cấp lên gấp đôi.
+UPDATE MATHANG
+SET SOLUONG = SOLUONG * 2
+WHERE NHACUNGCAPNO = (
+                      SELECT MACONGTY 
+					  FROM NHACUNGCAP 
+					  WHERE TENCONGTY = N'Công ty VINAMILK'
+					  );
+
+--c: Cập nhật giá trị của trường NOIGIAOHANG trong bảng DONDATHANG bằng địa chỉ của khách hàng đối với những đơn đặt hàng chưa xác định được nơi giao hàng (giá trị trường NOIGIAOHANG bằng NULL).
+UPDATE DONDATHANG
+SET NOIGIAOHANG = (
+    SELECT DIACHI
+    FROM KHACHHANG
+    WHERE KHACHHANG.MAKHACHHANG = DONDATHANG.KHACHHANGNO
+)
+WHERE NOIGIAOHANG IS NULL
+--d: Cập nhật lại dữ liệu trong bảng KHACHHANG sao cho nếu tên công ty và tên giao dịch của khách hàng trùng với tên công ty và tên giao dịch của một nhà cung cấp nào đó thì địa chỉ, điện thoại, fax và e-mail phải giống nhau.
+UPDATE KHACHHANG
+SET DIACHI = NHACUNGCAP.DIACHI,
+    DIENTHOAI = NHACUNGCAP.DIENTHOAI,
+    FAX = NHACUNGCAP.FAX,
+    EMAIL = NHACUNGCAP.EMAIL
+FROM KHACHHANG, NHACUNGCAP
+WHERE KHACHHANG.TENCONGTY = NHACUNGCAP.TENCONGTY AND KHACHHANG.TENGIAODICH = NHACUNGCAP.TENGIAODICH
+--e: Tăng lương lên gấp rưỡi cho những nhân viên bán được số lượng hàng nhiều hơn 100 trong năm 2022.
+UPDATE NHANVIEN
+SET LUONGCOBAN = LUONGCOBAN * 1.5
+WHERE MANHANVIEN IN (
+    SELECT MANHANVIEN
+    FROM DONDATHANG, CHITIETDATHANG
+    WHERE YEAR(NGAYDATHANG) = 2022 
+    GROUP BY MANHANVIEN
+    HAVING SUM(SOLUONG) > 100
+)
+--f: Tăng phụ cấp lên bằng 50% lương cho những nhân viên bán được hàng nhiều nhất.
+UPDATE NHANVIEN
+SET PHUCAP = LUONGCOBAN * 0.5
+WHERE MANHANVIEN IN (
+    SELECT MANHANVIEN
+    FROM DONDATHANG, CHITIETDATHANG
+    WHERE DONDATHANG.SOHOADON = CHITIETDATHANG.DONDATHANGNO
+    GROUP BY DONDATHANG.MANHANVIEN
+    HAVING SUM(CHITIETDATHANG.SoLuong) = (
+            SELECT MAX(Tong)
+            FROM (
+                SELECT MANHANVIEN, SUM(CHITIETDATHANG.SoLuong) AS Tong
+                FROM DONDATHANG,CHITIETDATHANG
+                WHERE DONDATHANG.SOHOADON = CHITIETDATHANG.DONDATHANGNO
+                GROUP BY DONDATHANG.MANHANVIEN
+            ) Tong
+        )
+)
+--g: Giảm 25% lương của những nhân viên trong năm 2023 không lập được bất kỳ đơn đặt hàng nào.
+UPDATE NHANVIEN
+SET LUONGCOBAN = LUONGCOBAN * 0.75
+WHERE MANHANVIEN NOT IN (
+    SELECT DISTINCT MANHANVIEN
+    FROM DONDATHANG
+    WHERE YEAR(NGAYDATHANG) = 2023
+)
